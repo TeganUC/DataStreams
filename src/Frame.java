@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class Frame extends JFrame{
-    JPanel mainPnl, titlePnl, displayPnl, searchPnl, inputPnl;
+    JPanel mainPnl, titlePnl, searchPnl, inputPnl;
     JLabel titleLbl, searchLbl;
     JButton searchStrBtn, getFileBtn, quitBtn;
     JTextArea getSearch;
@@ -28,7 +28,6 @@ public class Frame extends JFrame{
     private void createFrameComponents(){
         createTitlePnl();
         createInputPnl();
-        createDisplayPnl();
         createSearchPnl();
     }
 
@@ -40,32 +39,25 @@ public class Frame extends JFrame{
         titleLbl.setVerticalTextPosition(JLabel.BOTTOM);
         titleLbl.setHorizontalTextPosition(JLabel.CENTER);
         titlePnl.add(titleLbl);
-
         mainPnl.add(titlePnl, BorderLayout.NORTH);
     }
 
     private void createInputPnl() {
         inputPnl = new JPanel();
-        inputPnl.setLayout(new GridLayout(1, 1));
-        displayFile = new JTextArea(10, 80);
-        displayFile.setFont(new Font("Courier", Font.PLAIN, 12));
+        inputPnl.setLayout(new GridLayout(1, 2));
+        displayFile = new JTextArea(8, 40);
+        displayFile.setFont(new Font("Arial", Font.PLAIN, 12));
         displayFile.setEditable(false);
         scroller = new JScrollPane(displayFile);
         inputPnl.add(scroller);
 
-        mainPnl.add(inputPnl, BorderLayout.WEST);
-    }
-
-    private void createDisplayPnl() {
-        displayPnl = new JPanel();
-        displayPnl.setLayout(new GridLayout(1, 1));
-        displayTA = new JTextArea(10, 80);
-        displayTA.setFont(new Font("Courier", Font.PLAIN, 12));
+        displayTA = new JTextArea(8, 40);
+        displayTA.setFont(new Font("Arial", Font.PLAIN, 12));
         displayTA.setEditable(false);
         scroller2 = new JScrollPane(displayTA);
-        displayPnl.add(scroller2);
+        inputPnl.add(scroller2);
 
-        mainPnl.add(displayPnl, BorderLayout.EAST);
+        mainPnl.add(inputPnl);
     }
 
     private void createSearchPnl() {
@@ -85,7 +77,7 @@ public class Frame extends JFrame{
                 getSearch.setText("");
                 displayTA.append(FilePicker.getSearched(searchedString));
             }else{
-                displayTA.append("No file chosen. Please Choose file");
+                displayTA.append("No file chosen. Please Choose file!");
             }
         });
 
